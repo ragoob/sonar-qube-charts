@@ -48,6 +48,10 @@ spec:
               value: "admin"
             - name: SONARQUBE_PASSWORD
               value: "P@ssw0rd"
+            - name: POSTGRESQL_ROOT_USER
+              value: "admin"
+            - name: POSTGRESQL_ROOT_PASSWORD
+              value: "P@ssw0rd"
           ports:
             - name: http
               containerPort: 9000
