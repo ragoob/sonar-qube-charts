@@ -33,9 +33,17 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ['sysctl', '-w', 'vm.max_map_count=262144']
+          env:
+            - name: SONARQUBE_JDBC_PASSWORD
+              value: "P@ssw0rd"
+            - name: SONARQUBE_JDBC_URL
+              value: jdbc:postgresql://52.146.46.116:30895/sonar
+
+           
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 9000
               protocol: TCP
           livenessProbe:
             httpGet:
