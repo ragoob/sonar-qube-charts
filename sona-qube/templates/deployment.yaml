@@ -34,24 +34,14 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: POSTGRESQL_HOST
-              value: "52.146.46.116"
-            - name: POSTGRESQL_PORT_NUMBER
-              value: "30895"
-            - name: SONARQUBE_DATABASE_NAME
-              value: "sonarqube"
+            - name: SONARQUBE_JDBC_URL
+              value: "jdbc:postgresql://52.146.46.116:30895/sonar"
+            - name: SONARQUBE_JDBC_USERNAME
+              value: "admin"
             - name: SONARQUBE_DATABASE_USER
               value: "admin"
-            - name: SONARQUBE_DATABASE_PASSWORD
-              value: "P@ssw0rd"
-            - name: SONARQUBE_USERNAME
-              value: "admin"
-            - name: SONARQUBE_PASSWORD
-              value: "P@ssw0rd"
-            - name: POSTGRESQL_ROOT_USER
-              value: "admin"
-            - name: POSTGRESQL_ROOT_PASSWORD
-              value: "P@ssw0rd"
+            - name: SONARQUBE_JDBC_PASSWORD
+              value: "P@ssw0rd"  
           ports:
             - name: http
               containerPort: 9000
